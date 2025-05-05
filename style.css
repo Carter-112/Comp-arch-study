@@ -1,0 +1,40 @@
+/* Layout and Base Styles */ body { font-family: Arial, sans-serif; background-color: #f5f7fa; margin: 0; padding: 0; }
+
+#quiz-container { max-width: 800px; margin: 2em auto; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); padding: 2em; }
+
+h1 { text-align: center; margin-bottom: 1em; color: #333333; }
+
+#question { font-size: 1.25em; margin-bottom: 1em; color: #444444; }
+
+#options { display: flex; flex-direction: column; gap: 0.75em; }
+
+.option { position: relative; background: #fafafa; border: 2px solid #ddd; border-radius: 5px; padding: 0.75em 1em; cursor: pointer; transition: border-color 0.2s, background 0.2s; }
+
+.option:hover { background: #f0f4f8; }
+
+/* Selected state before submission */ .option.selected { outline: 2px solid #3b82f6; outline-offset: 1px; }
+
+/* Correct/Wrong states after submission */ .option.correct { border-color: #16a34a; background: #ecfdf5; }
+
+.option.wrong { border-color: #dc2626; background: #fef2f2; }
+
+/* Navigation Buttons */ #controls { display: flex; justify-content: space-between; margin-top: 1.5em; }
+
+button { font-size: 1em; padding: 0.6em 1.2em; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.2s; }
+
+button:disabled { opacity: 0.5; cursor: default; }
+
+#prev-btn { background-color: #6b7280; color: white; }
+
+#prev-btn:hover:not(:disabled) { background-color: #4b5563; }
+
+#submit-btn { background-color: #2563eb; color: white; }
+
+#submit-btn:hover:not(:disabled) { background-color: #1e40af; }
+
+#next-btn { background-color: #10b981; color: white; }
+
+#next-btn:hover:not(:disabled) { background-color: #047857; }
+
+/* Result Summary */ #result { text-align: center; font-size: 1.1em; color: #333333; margin-top: 2em; }
+

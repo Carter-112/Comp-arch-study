@@ -1,0 +1,701 @@
+ 1. Which positional weight does the third bit from the right represent in binary?  
+A. 1  
+B. 2  
+C. 4  
+D. 8  
+
+2. In an 8-bit two’s-complement system, what decimal value does 11111101 represent?  
+A. –3  
+B. –5  
+C. –2  
+D. –1  
+
+3. What is the hexadecimal equivalent of the binary value 10101100?  
+A. 0xAC  
+B. 0xCA  
+C. 0xBC  
+D. 0xCB  
+
+4. Which of the following is the two’s-complement representation of –37 in 8 bits?  
+A. 11011011  
+B. 10100101  
+C. 00100101  
+D. 11000101  
+
+5. Converting the decimal number 108 to binary by repeated division yields which remainder sequence (least to most significant)?  
+A. 01101100  
+B. 00110110  
+C. 00101101  
+D. 00110110  
+
+6. Which operation does a bitwise AND perform on two 8-bit values?  
+A. Inverts all bits  
+B. Sets each result bit to 1 only if both input bits are 1  
+C. Sets each result bit to 1 only if exactly one input bit is 1  
+D. Sets each result bit to 1 if either input bit is 1  
+
+7. What is the result of 0x3C OR 0xA7 in hexadecimal?  
+A. 0xFF  
+B. 0x9F  
+C. 0xBF  
+D. 0xEF  
+
+8. In C, which operator performs a logical shift right on unsigned integers?  
+A. >>  
+B. <<<  
+C. >>>  
+D. <<  
+
+9. Which encoding method allows representation of both positive and negative integers with a single zero representation?  
+A. Sign-magnitude  
+B. One’s complement  
+C. Two’s complement  
+D. Excess-127  
+
+10. In a fixed-width 16-bit two’s-complement system, what is the binary result of –45?  
+A. 11010011  
+B. 11100101  
+C. 11010101  
+D. 11010011  
+
+11. The Instruction Set Architecture (ISA) layer is primarily concerned with:  
+A. Transistor design  
+B. Register-to-register instructions and formats  
+C. Operating system services  
+D. High-level language syntax  
+
+12. The Application Binary Interface (ABI) specifies:  
+A. Memory hierarchy organization  
+B. Function calling conventions and register usage  
+C. Source code macros  
+D. Hardware implementation details  
+
+13. Which best describes an API?  
+A. Binary instruction formats  
+B. High-level function call semantics  
+C. Register file mapping  
+D. Cache replacement policy  
+
+14. Which component performs the “load word” operation in MIPS?  
+A. ALU  
+B. Register file  
+C. Main memory  
+D. Control unit  
+
+15. In MIPS, how many general-purpose registers are available?  
+A. 16  
+B. 32  
+C. 64  
+D. 8  
+
+16. Which MIPS instruction type uses opcode and function fields to distinguish operations?  
+A. R-type  
+B. I-type  
+C. J-type  
+D. F-type  
+
+17. The “addi” instruction in MIPS is an example of which format?  
+A. R-type  
+B. I-type  
+C. J-type  
+D. FR-type  
+
+18. In an R-type MIPS instruction, what does the “shamt” field specify?  
+A. Source register  
+B. Shift amount  
+C. Function code  
+D. Immediate value  
+
+19. Which pipeline stage in MIPS is responsible for calculating branch targets?  
+A. IF  
+B. ID  
+C. EX  
+D. MEM  
+
+20. During which stage is the result written back to the register file?  
+A. IF  
+B. ID  
+C. MEM  
+D. WB  
+
+21. A structural hazard occurs when:  
+A. An instruction depends on the result of a previous one  
+B. Two instructions compete for the same hardware resource  
+C. A branch outcome is unknown  
+D. The pipeline is balanced  
+
+22. RAW (Read-After-Write) is what type of hazard?  
+A. Structural  
+B. Control  
+C. Data  
+D. Memory  
+
+23. Forwarding (bypassing) in a pipeline is used to resolve:  
+A. Structural hazards  
+B. Control hazards  
+C. RAW data hazards  
+D. WAR hazards  
+
+24. A load-use hazard requires:  
+A. No stall (forwarding covers it)  
+B. One bubble in the pipeline  
+C. Full pipeline flush  
+D. Two bubbles  
+
+25. Which cache miss type is due to first access to a block?  
+A. Conflict miss  
+B. Capacity miss  
+C. Coherence miss  
+D. Cold (compulsory) miss  
+
+26. In a direct-mapped cache, each memory address maps to:  
+A. Any line in the cache  
+B. Exactly one line  
+C. One of two lines  
+D. One of four lines  
+
+27. The “dirty bit” in a write-back cache indicates:  
+A. The block is invalid  
+B. The block’s data has been modified since load  
+C. The block is shared  
+D. The block is read-only  
+
+28. Which replacement policy evicts the block that has not been accessed for the longest time?  
+A. Random  
+B. FIFO  
+C. LRU  
+D. Write-through  
+
+29. Spatial locality refers to:  
+A. Reuse of data at the same address  
+B. Reuse of data in nearby addresses  
+C. Instruction streaming  
+D. Branch prediction  
+
+30. Temporal locality refers to:  
+A. Accesses to the same data repeated soon  
+B. Accesses to different data far apart  
+C. Spatial grouping of instructions  
+D. Cache line sharing  
+
+31. Which MIPS instruction jumps unconditionally to a target?  
+A. beq  
+B. bne  
+C. j  
+D. jr  
+
+32. The Program Counter (PC) is updated in which pipeline stage?  
+A. IF  
+B. ID  
+C. EX  
+D. MEM  
+
+33. In MIPS, the first user instruction is loaded at address:  
+A. 0x10000000  
+B. 0x00400000  
+C. 0x7FFFFFFC  
+D. 0x00000000  
+
+34. What is the main purpose of assembler directives like .text and .data?  
+A. Generate machine code  
+B. Provide metadata and organize sections  
+C. Define CPU registers  
+D. Control pipeline stages  
+
+35. A two-pass assembler uses its first pass to:  
+A. Encode instructions  
+B. Resolve labels and build symbol table  
+C. Simulate execution  
+D. Allocate registers  
+
+36. In digital logic, a NAND gate is:  
+A. Logically complete by itself  
+B. Equivalent to OR  
+C. Only used in analog circuits  
+D. A memory element  
+
+37. A full-adder circuit has how many inputs?  
+A. 2  
+B. 3  
+C. 4  
+D. 5  
+
+38. Which sequential element is edge-triggered?  
+A. RS latch  
+B. Gated D-latch  
+C. D flip-flop  
+D. One-hot decoder  
+
+39. The critical-path delay of a circuit is determined by:  
+A. Number of registers  
+B. Longest sequence of gates from input to output  
+C. Total transistor count  
+D. Clock frequency  
+
+40. In RAM, the address bits determine:  
+A. Data width  
+B. Size of each word  
+C. Which word to read or write  
+D. Clock rate  
+
+41. A one-hot decoder with n inputs has how many outputs?  
+A. n  
+B. 2^n  
+C. n^2  
+D. 2n  
+
+42. The MIPS register $zero always holds:  
+A. 0  
+B. 1  
+C. PC  
+D. Stack pointer  
+
+43. Which MIPS instruction sets the upper 16 bits of a register?  
+A. addi  
+B. lui  
+C. ori  
+D. slti  
+
+44. How many bits is each MIPS instruction?  
+A. 16  
+B. 32  
+C. 64  
+D. Variable length  
+
+45. In a pipelined MIPS processor, how many pipeline registers separate stages?  
+A. 3  
+B. 4  
+C. 5  
+D. 6  
+
+46. Control hazards are primarily due to:  
+A. Data dependencies  
+B. Branch and jump instructions  
+C. Cache misses  
+D. Structural hazards  
+
+47. Moving branch comparison to the ID stage reduces:  
+A. Data hazards  
+B. Control-hazard penalty  
+C. Cache misses  
+D. Structural hazards  
+
+48. A pipelined processor with five stages can complete one instruction every:  
+A. 1 cycle after fill  
+B. 5 cycles  
+C. 10 cycles  
+D. 0.5 cycle  
+
+49. CPI (Cycles per Instruction) in an ideal single-cycle MIPS is:  
+A. 0.5  
+B. 1  
+C. >1 for all instructions  
+D. Depends on cache  
+
+50. Speed-up due to pipelining is limited by:  
+A. Memory size  
+B. Branch frequency and hazards  
+C. Number of registers  
+D. Instruction encoding  
+
+51. Which metric measures percentage of cache hits?  
+A. Miss rate  
+B. Hit time  
+C. Hit rate  
+D. Miss penalty  
+
+52. The block offset bits in a memory address select:  
+A. Cache set  
+B. Cache way  
+C. Byte within a block  
+D. Tag bits  
+
+53. In an n-way set-associative cache with n=4, each set contains:  
+A. 1 block  
+B. 2 blocks  
+C. 4 blocks  
+D. 8 blocks  
+
+54. Direct-mapped cache is equivalent to:  
+A. Fully associative, 1 set  
+B. n-way, n=number of sets  
+C. 1-way set associative  
+D. 2-way set associative  
+
+55. A write-no-allocate policy on store miss:  
+A. Brings block into cache then writes  
+B. Writes directly to lower level, skips cache  
+C. Evicts random block  
+D. Triggers pipeline stall  
+
+56. Which is true for write-through caches?  
+A. Data written only on eviction  
+B. Data written to cache and next level immediately  
+C. Dirty bit used for writes  
+D. Write buffer not needed  
+
+57. Capacity misses occur when:  
+A. Blocks conflict in same set  
+B. Program working set exceeds cache size  
+C. First reference to block  
+D. Shared across processors  
+
+58. Coherence misses appear in:  
+A. Single-processor caches only  
+B. Multi-processor systems with shared data  
+C. Direct-mapped caches only  
+D. Write-back caches only  
+
+59. Which memory technology is fastest?  
+A. Disk  
+B. DRAM  
+C. L1 cache  
+D. L2 cache  
+
+60. Temporal locality is exploited by:  
+A. Instruction prefetch  
+B. Large block sizes  
+C. Caches and registers  
+D. Write-back policy  
+
+61. Which is not a MIPS J-type instruction?  
+A. j  
+B. jal  
+C. jr  
+D. beq  
+
+62. The register file in MIPS typically has how many read ports?  
+A. 1  
+B. 2  
+C. 3  
+D. 4  
+
+63. An I-type MIPS instruction contains how many immediate bits?  
+A. 8  
+B. 12  
+C. 16  
+D. 26  
+
+64. Sign-extending a 16-bit immediate to 32 bits replicates:  
+A. Logical zeros  
+B. The sign bit  
+C. Both zeros and ones alternately  
+D. Lower 8 bits  
+
+65. Which MIPS instruction compares two registers and branches if equal?  
+A. bne  
+B. beq  
+C. slt  
+D. j  
+
+66. Which stage first examines the opcode to generate control signals?  
+A. IF  
+B. ID  
+C. EX  
+D. MEM  
+
+67. The ALUSrc control signal selects between:  
+A. Two register values  
+B. Register value and immediate  
+C. PC+4 and branch target  
+D. Memory data and ALU result  
+
+68. In an R-type instruction, the destination register is in field:  
+A. rs  
+B. rt  
+C. rd  
+D. shamt  
+
+69. The funct field in R-type instructions further distinguishes:  
+A. Opcodes  
+B. Operations within R-type  
+C. Immediate values  
+D. Cache policies  
+
+70. Which MIPS instruction stores a byte?  
+A. sb  
+B. sh  
+C. sw  
+D. sd  
+
+71. In a single-cycle processor, the clock period equals:  
+A. Sum of all stage delays  
+B. Delay of the longest stage  
+C. Average stage delay  
+D. Zero  
+
+72. Pipelining improves throughput by:  
+A. Reducing CPI below 1  
+B. Overlapping execution of instructions  
+C. Increasing instruction length  
+D. Eliminating hazards  
+
+73. A bubble in a pipeline is equivalent to:  
+A. A harmless NOP  
+B. A branch taken  
+C. A data hazard  
+D. A cache miss  
+
+74. Structural hazards in a simple five-stage MIPS pipeline are avoided by:  
+A. Using separate instruction and data memories  
+B. Inserting NOPs  
+C. Increasing CPI  
+D. Larger caches  
+
+75. What does “stall” refer to in pipelined execution?  
+A. Flushing pipeline completely  
+B. Pausing fetch and decode of new instructions  
+C. Writing back early  
+D. Forwarding data  
+
+76. In cache terminology, “tag” bits identify:  
+A. Block offset  
+B. Cache set index  
+C. Which memory block is stored  
+D. Replacement policy  
+
+77. The miss penalty is:  
+A. Time to check cache tags  
+B. Cycles lost on a cache hit  
+C. Cycles to retrieve data from lower level on miss  
+D. Fraction of misses  
+
+78. In a write-back cache, data is written to main memory:  
+A. On every store  
+B. Only when a dirty block is evicted  
+C. Never  
+D. On read miss  
+
+79. Which cache organization avoids conflict misses entirely?  
+A. Direct-mapped  
+B. 2-way set associative  
+C. Fully associative  
+D. None  
+
+80. Which register holds the address of the next instruction?  
+A. $ra  
+B. $sp  
+C. PC  
+D. EPC  
+
+81. An exception caused by dividing by zero is handled by:  
+A. Data cache  
+B. Control hazard logic  
+C. Exception handling hardware  
+D. Branch predictor  
+
+82. The Exception Program Counter (EPC) stores:  
+A. Cause code  
+B. Address of offending instruction  
+C. Stack pointer  
+D. Status register  
+
+83. The cause register indicates:  
+A. The reason for an exception  
+B. Next PC  
+C. Pending interrupts  
+D. Cache state  
+
+84. Mode change from user to kernel on interrupt flushes:  
+A. Only pipeline  
+B. Pipeline and caches  
+C. Only TLB  
+D. None  
+
+85. Kernel mode bit in the status register is called:  
+A. UM  
+B. IE  
+C. EL  
+D. KM  
+
+86. Which MIPS instruction returns from exception?  
+A. eret  
+B. jr $ra  
+C. syscall  
+D. mfc0  
+
+87. To save user registers on exception entry, OS uses:  
+A. Gated D-latches  
+B. Push onto stack in kernel space  
+C. Store in EPC  
+D. Write directly to PC  
+
+88. In pipelined processors, self-modifying code can cause:  
+A. Cache coherence  
+B. Structural hazard  
+C. Unexpected behavior due to stale instructions  
+D. Branch misprediction  
+
+89. Which phase of a benchmark refers to a short period of behavior?  
+A. Warm-up  
+B. Cold miss  
+C. Phase  
+D. Capacity  
+
+90. Which metric combines instruction count, CPI, and clock period?  
+A. Speed-up  
+B. Execution time  
+C. Cache hit rate  
+D. Throughput  
+
+91. The least significant bits of the address select:  
+A. Tag  
+B. Set index  
+C. Block offset  
+D. Cache way  
+
+92. A valid bit in a cache line indicates:  
+A. Line is empty  
+B. Line contains valid data  
+C. Line is dirty  
+D. Line is locked  
+
+93. Write-allocate on store miss will:  
+A. Skip cache and write to memory  
+B. Bring block into cache then write  
+C. Invalidate all lines  
+D. Insert a pipeline bubble  
+
+94. In a 4-way set-associative cache, conflict misses can be reduced by:  
+A. Increasing block size only  
+B. Increasing associativity  
+C. Decreasing cache capacity  
+D. Using write-through policy  
+
+95. Cache coherence in multi-core systems is maintained by:  
+A. LRU policy  
+B. Write-back only  
+C. Coherence protocols (MESI, etc.)  
+D. Direct mapping  
+
+96. A register file with simultaneous read/write ports uses:  
+A. Flip-flops and multiplexers  
+B. Only latches  
+C. Only RAM arrays  
+D. No special hardware  
+
+97. Which instruction format field is largest in J-type?  
+A. Opcode  
+B. Address  
+C. Function  
+D. Register specifier  
+
+98. Pipeline depth refers to:  
+A. Number of stages  
+B. Number of instructions in flight  
+C. Cache levels  
+D. Register count  
+
+99. Prefetching instructions in IF stage can reduce:  
+A. Structural hazards  
+B. Data hazards  
+C. Control hazards  
+D. Instruction fetch stalls  
+
+100. Which operation is logically complete by itself?  
+A. AND  
+B. OR  
+C. NAND  
+D. XOR  
+
+Answer Key:  
+1. C  
+2. B  
+3. A  
+4. A  
+5. D  
+6. B  
+7. C  
+8. A  
+9. C  
+10. A  
+11. B  
+12. B  
+13. B  
+14. C  
+15. B  
+16. A  
+17. B  
+18. B  
+19. C  
+20. D  
+21. B  
+22. C  
+23. C  
+24. B  
+25. D  
+26. B  
+27. B  
+28. C  
+29. B  
+30. A  
+31. C  
+32. A  
+33. B  
+34. B  
+35. B  
+36. A  
+37. B  
+38. C  
+39. B  
+40. C  
+41. B  
+42. A  
+43. B  
+44. B  
+45. B  
+46. B  
+47. B  
+48. A  
+49. B  
+50. B  
+51. C  
+52. C  
+53. C  
+54. C  
+55. B  
+56. B  
+57. B  
+58. B  
+59. C  
+60. C  
+61. C  
+62. B  
+63. C  
+64. B  
+65. B  
+66. B  
+67. B  
+68. C  
+69. B  
+70. A  
+71. A  
+72. B  
+73. A  
+74. A  
+75. B  
+76. C  
+77. C  
+78. B  
+79. C  
+80. C  
+81. C  
+82. B  
+83. A  
+84. B  
+85. A  
+86. A  
+87. B  
+88. C  
+89. C  
+90. B  
+91. C  
+92. B  
+93. B  
+94. B  
+95. C  
+96. A  
+97. B  
+98. A  
+99. D  
+100. C

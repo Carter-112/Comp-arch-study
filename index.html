@@ -1,81 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Interactive Quiz</title>
-  <style>
-    body { font-family: sans-serif; padding: 2em; }
-    #quiz-container { max-width: 600px; margin: auto; }
-    #question { font-size: 1.2em; margin-bottom: 1em; }
-    .option {
-      border: 2px solid #ccc;
-      border-radius: 4px;
-      padding: 0.5em;
-      margin-bottom: 0.5em;
-      cursor: pointer;
-    }
-    .option.correct { border-color: green; }
-    .option.wrong   { border-color: red; }
-    #next-btn {
-      margin-top: 1em;
-      padding: 0.5em 1em;
-      font-size: 1em;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="quiz-container">
     <h1>Quiz</h1>
     <div id="question"></div>
     <div id="options"></div>
-    <button id="next-btn" disabled>Next</button>
-  </div>
-
-  <script>
+    <div id="controls">
+      <button id="prev-btn" disabled>Previous</button>
+      <button id="submit-btn" disabled>Submit</button>
+      <button id="next-btn" disabled>Next</button>
+    </div>
+  </div>  <script>
     (async function() {
       const raw = await fetch('quiz.txt').then(r => r.text());
-
-      // Split off the answer-key block (includes the colon)
-      const [qBlock, aBlock] = raw.split(/Answer Key:/i);
-      
-      // Split question blocks on blank lines (robust to \r\n as well)
-      const questionBlocks = qBlock.trim()
-        .split(/\r?\n\r?\n/);
-
-      // Parse the answer key into a map { questionNumber: 'A' }
-      const answerLines = aBlock
-        .trim()
-        .split(/\r?\n/)
-        .filter(l => /^\s*\d+\./.test(l));  // only lines starting "number."
-
+      const [qBlock, aBlock] = raw.split('Answer Key');
+      const questionLines = qBlock.trim().split('\n\n');
+      const answerLines = aBlock.trim().split('\n');
       const answers = {};
       answerLines.forEach(line => {
-        const [numPart, ansPart] = line.split('.');
-        answers[+numPart.trim()] = ansPart.trim();
+        const [num, ans] = line.split('.');
+        answers[+num.trim()] = ans.trim();
       });
 
-      // Build a questions[] array
-      const questions = questionBlocks.map(block => {
-        const lines = block.trim().split(/\r?\n/);
+      const questions = questionLines.map(block => {
+        const lines = block.split('\n');
         const header = lines.shift();
+        const [, text] = header.match(/^\s*\d+\.\s*(.+)$/);
+        const opts = lines.map(l => {
+          const letter = l[0];
+          const content = l.slice(3);
+          return { letter, content };
+        });
         const num = +header.match(/^\s*(\d+)\./)[1];
-        const text = header.replace(/^\s*\d+\.\s*/, '');
-        const opts = lines
-          .filter(l => /^[A-D]\./.test(l))
-          .map(l => ({
-            letter: l[0],
-            content: l.slice(3).trim()
-          }));
         return { num, text, opts };
       });
 
-      let idx = 0, correctCount = 0;
+      let idx = 0;
+      let correctCount = 0;
       const qEl = document.getElementById('question');
       const oEl = document.getElementById('options');
-      const btn = document.getElementById('next-btn');
+      const prevBtn = document.getElementById('prev-btn');
+      const submitBtn = document.getElementById('submit-btn');
+      const nextBtn = document.getElementById('next-btn');
 
       function showQuestion() {
-        btn.disabled = true;
+        // reset UI
+        submitBtn.disabled = true;
+        nextBtn.disabled = true;
         oEl.innerHTML = '';
         const q = questions[idx];
         qEl.textContent = `${q.num}. ${q.text}`;
@@ -83,29 +58,47 @@
           const div = document.createElement('div');
           div.className = 'option';
           div.textContent = `${o.letter}. ${o.content}`;
-          div.addEventListener('click', () => selectAnswer(o.letter, div));
+          div.addEventListener('click', () => selectOption(div, o.letter));
           oEl.appendChild(div);
         });
+        prevBtn.disabled = idx === 0;
       }
 
-      function selectAnswer(letter, el) {
-        // prevent multiple clicks
-        if (!btn.disabled) return;
+      function selectOption(el, letter) {
+        // clear any previous selection
+        [...oEl.children].forEach(d => d.classList.remove('selected'));
+        el.classList.add('selected');
+        submitBtn.disabled = false;
+      }
+
+      function submitAnswer() {
+        const selectedEl = [...oEl.children].find(d => d.classList.contains('selected'));
+        if (!selectedEl) return;
+        const letter = selectedEl.textContent.charAt(0);
         const correct = answers[questions[idx].num];
         if (letter === correct) {
-          el.classList.add('correct');
+          selectedEl.classList.add('correct');
           correctCount++;
         } else {
-          el.classList.add('wrong');
-          // highlight the real correct one
-          Array.from(oEl.children)
+          selectedEl.classList.add('wrong');
+          [...oEl.children]
             .find(d => d.textContent.startsWith(correct + '.'))
             .classList.add('correct');
         }
-        btn.disabled = false;
+        submitBtn.disabled = true;
+        nextBtn.disabled = false;
       }
 
-      btn.addEventListener('click', () => {
+      prevBtn.addEventListener('click', () => {
+        if (idx > 0) {
+          idx--;
+          showQuestion();
+        }
+      });
+
+      submitBtn.addEventListener('click', submitAnswer);
+
+      nextBtn.addEventListener('click', () => {
         idx++;
         if (idx < questions.length) {
           showQuestion();
@@ -118,6 +111,5 @@
 
       showQuestion();
     })();
-  </script>
-</body>
+  </script></body>
 </html>

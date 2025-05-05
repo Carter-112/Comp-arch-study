@@ -34,25 +34,38 @@
   <script>
     (async function() {
       const raw = await fetch('quiz.txt').then(r => r.text());
-      const [qBlock, aBlock] = raw.split('Answer Key');
-      const questionLines = qBlock.trim().split('\n\n');
-      const answerLines = aBlock.trim().split('\n');
+
+      // Split off the answer-key block (includes the colon)
+      const [qBlock, aBlock] = raw.split(/Answer Key:/i);
+      
+      // Split question blocks on blank lines (robust to \r\n as well)
+      const questionBlocks = qBlock.trim()
+        .split(/\r?\n\r?\n/);
+
+      // Parse the answer key into a map { questionNumber: 'A' }
+      const answerLines = aBlock
+        .trim()
+        .split(/\r?\n/)
+        .filter(l => /^\s*\d+\./.test(l));  // only lines starting "number."
+
       const answers = {};
       answerLines.forEach(line => {
-        const [num, ans] = line.split('.');
-        answers[+num.trim()] = ans.trim();
+        const [numPart, ansPart] = line.split('.');
+        answers[+numPart.trim()] = ansPart.trim();
       });
 
-      const questions = questionLines.map(block => {
-        const lines = block.split('\n');
+      // Build a questions[] array
+      const questions = questionBlocks.map(block => {
+        const lines = block.trim().split(/\r?\n/);
         const header = lines.shift();
-        const [, text] = header.match(/^\s*\d+\.\s*(.+)$/);
-        const opts = lines.map(l => {
-          const letter = l[0];
-          const content = l.slice(3);
-          return { letter, content };
-        });
         const num = +header.match(/^\s*(\d+)\./)[1];
+        const text = header.replace(/^\s*\d+\.\s*/, '');
+        const opts = lines
+          .filter(l => /^[A-D]\./.test(l))
+          .map(l => ({
+            letter: l[0],
+            content: l.slice(3).trim()
+          }));
         return { num, text, opts };
       });
 
@@ -76,8 +89,8 @@
       }
 
       function selectAnswer(letter, el) {
-        // prevent double-click
-        if (btn.disabled === false) return;
+        // prevent multiple clicks
+        if (!btn.disabled) return;
         const correct = answers[questions[idx].num];
         if (letter === correct) {
           el.classList.add('correct');
@@ -85,8 +98,9 @@
         } else {
           el.classList.add('wrong');
           // highlight the real correct one
-          [...oEl.children].find(d => d.textContent.startsWith(correct + '.'))
-                        .classList.add('correct');
+          Array.from(oEl.children)
+            .find(d => d.textContent.startsWith(correct + '.'))
+            .classList.add('correct');
         }
         btn.disabled = false;
       }

@@ -38,3 +38,12 @@ button:disabled { opacity: 0.5; cursor: default; }
 
 /* Result Summary */ #result { text-align: center; font-size: 1.1em; color: #333333; margin-top: 2em; }
 
+#reset-btn {
+  background-color: #f97316; /* orange */
+  color: white;
+  margin-left: 1em;
+}
+
+#reset-btn:hover:not(:disabled) {
+  background-color: #c2410c;
+}

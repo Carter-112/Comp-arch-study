@@ -59,7 +59,7 @@
 
   function showQuestion() {
     submitBtn.disabled = true;
-    nextBtn.disabled = true;
+    nextBtn.disabled = idx >= questions.length - 1;
     oEl.innerHTML = '';
     const q = questions[idx];
     qEl.textContent = `${q.num}. ${q.text}`;

@@ -13,9 +13,10 @@
       <button id="prev-btn" disabled>Previous</button>
       <button id="submit-btn" disabled>Submit</button>
       <button id="next-btn" disabled>Next</button>
+    <button id="reset-btn">Reset Quiz</button>
     </div>
   </div> 
-<script>
+    <script>
 (async function() {
   const raw = await fetch('quiz.txt').then(r => r.text());
   const [qBlock, aBlock] = raw.split(/^\s*Answer Key\s*:?/m);
@@ -42,12 +43,18 @@
 
   let idx = 0;
   let correctCount = 0;
-  const userAnswers = {}; // Save user selections
+  const userAnswers = JSON.parse(localStorage.getItem('quizAnswers') || '{}');
+
   const qEl = document.getElementById('question');
   const oEl = document.getElementById('options');
   const prevBtn = document.getElementById('prev-btn');
   const submitBtn = document.getElementById('submit-btn');
   const nextBtn = document.getElementById('next-btn');
+  const resetBtn = document.getElementById('reset-btn');
+
+  function save() {
+    localStorage.setItem('quizAnswers', JSON.stringify(userAnswers));
+  }
 
   function showQuestion() {
     submitBtn.disabled = true;
@@ -67,14 +74,15 @@
     const saved = userAnswers[q.num];
     if (saved) {
       const el = [...oEl.children].find(d => d.textContent.startsWith(saved.letter + '.'));
-      el.classList.add('selected');
+      if (el) el.classList.add('selected');
+
       if (saved.answered) {
         if (saved.correct) {
-          el.classList.add('correct');
+          el?.classList.add('correct');
         } else {
-          el.classList.add('wrong');
+          el?.classList.add('wrong');
           const correctEl = [...oEl.children].find(d => d.textContent.startsWith(answers[q.num] + '.'));
-          if (correctEl) correctEl.classList.add('correct');
+          correctEl?.classList.add('correct');
         }
         submitBtn.disabled = true;
         nextBtn.disabled = idx < questions.length - 1 ? false : true;
@@ -91,6 +99,7 @@
     el.classList.add('selected');
     const q = questions[idx];
     userAnswers[q.num] = { letter, answered: false };
+    save();
     submitBtn.disabled = false;
   }
 
@@ -109,11 +118,12 @@
     } else {
       selectedEl.classList.add('wrong');
       const correctEl = [...oEl.children].find(d => d.textContent.startsWith(correct + '.'));
-      if (correctEl) correctEl.classList.add('correct');
+      correctEl?.classList.add('correct');
       saved.correct = false;
     }
 
     saved.answered = true;
+    save();
     submitBtn.disabled = true;
     nextBtn.disabled = idx < questions.length - 1 ? false : true;
   }
@@ -134,7 +144,15 @@
     } else {
       document.getElementById('quiz-container').innerHTML =
         `<h1>Quiz Complete!</h1>
-         <p>You answered <strong>${correctCount}</strong> out of <strong>${questions.length}</strong> correctly.</p>`;
+         <p>You answered <strong>${correctCount}</strong> out of <strong>${questions.length}</strong> correctly.</p>
+         <button onclick="location.reload()">Restart</button>`;
+    }
+  });
+
+  resetBtn.addEventListener('click', () => {
+    if (confirm('Are you sure you want to reset the quiz? This will erase all saved answers.')) {
+      localStorage.removeItem('quizAnswers');
+      location.reload();
     }
   });
 

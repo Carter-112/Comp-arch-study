@@ -20,7 +20,7 @@ D. 0xCB
 A. 11011011  
 B. 10100101  
 C. 00100101  
-D. 11000101  
+D. 11011011  
 
 5. Converting the decimal number 108 to binary by repeated division yields which remainder sequence (least to most significant)?  
 A. 01101100  
@@ -602,7 +602,7 @@ Answer Key:
 1. C  
 2. A  
 3. A  
-4. C  
+4. D  
 5. A  
 6. B  
 7. C  

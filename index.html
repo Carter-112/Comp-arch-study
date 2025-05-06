@@ -18,7 +18,7 @@
     (async function() {
       const raw = await fetch('quiz.txt').then(r => r.text());
       const [qBlock, aBlock] = raw.split('Answer Key');
-      const questionLines = qBlock.trim().split('\n\n');
+      const questionLines = qBlock.trim().split(/\r?\n\r?\n/);
       const answerLines = aBlock.trim().split('\n');
       const answers = {};
       answerLines.forEach(line => {
